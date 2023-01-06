@@ -1,27 +1,28 @@
 public class App {
         public static void main(String[] args) throws Exception {
                 final String temp = "==========+++==========";
-                Circle circle = new Circle("Circle", 4);
-                Triangle triangle = new Triangle("Triangle", 4, 4, 5);
-                Square square = new Square("Square", 2);
-                Rectangle rectangle = new Rectangle("Rectangle", 5, 8);
-
-                Dog dog = new Dog("Reks");
-                Cat cat = new Cat("Murka");
-
-                Drawable[] drawables = { circle, triangle, square, rectangle, dog, cat };
-                for (Drawable item : drawables) {
-                        item.draw();
-                        if (item instanceof Figure) {
-                                System.out.println(((Figure) item).getName() + " Perimeter: "
-                                                + ((Figure) item).calculatePerimeter());
-
+                Transport[] transports = { createObject(TransportTypeEnum.AIRPLANE),
+                                createObject(TransportTypeEnum.BICYCLE),
+                                createObject(TransportTypeEnum.CAR),
+                };
+                for (int i = 0; i < transports.length; i++) {
+                        if (transports[i] instanceof Printable) {
+                                ((Printable) transports[i]).print();
+                                System.out.println(temp);
                         }
-                        if (item instanceof Animal) {
-                                System.out.println(((Animal) item).getName());
-                        }
-                        System.out.println(temp);
+                }
+        }
 
+        public static Transport createObject(TransportTypeEnum transportType) {
+                switch (transportType) {
+                        case BICYCLE:
+                                return new Bicycle("Bicycle", 2, "Yan");
+                        case CAR:
+                                return new Car("CAR", "ES300h", "Lexus", 2499);
+                        case AIRPLANE:
+                                return new Plane("JET", 2500, "Airplane");
+                        default:
+                                return new Car("CAR", "ES300h", "Lexus", 2499);
                 }
         }
 }
