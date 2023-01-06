@@ -1,46 +1,27 @@
 public class App {
-    public static void main(String[] args) throws Exception {
-        final String temp = "==========+++==========";
-        final CarManufacturer kia = new CarManufacturer("KIA", "South Korea");
-        final CarManufacturer lexus = new CarManufacturer("Lexus", "Japan");
-        final CarManufacturer toyota = new CarManufacturer("Toyota", "Japan");
-        final Engine toyotaLexus25 = new Engine(2499, TypeOfMotorEnum.HYBRID);
-        final Engine morning1 = new Engine(999, TypeOfMotorEnum.GAS);
-        final Engine kiaK5 = new Engine(1999, TypeOfMotorEnum.GAS);
+        public static void main(String[] args) throws Exception {
+                final String temp = "==========+++==========";
+                Circle circle = new Circle("Circle", 4);
+                Triangle triangle = new Triangle("Triangle", 4, 4, 5);
+                Square square = new Square("Square", 2);
+                Rectangle rectangle = new Rectangle("Rectangle", 5, 8);
 
-        Car lexusEs = new Car(70000, "ES300h", TypeOfCarEnum.SEDAN, 5, lexus, toyotaLexus25);
-        System.out.println(lexusEs.getInfo());
-        lexusEs.beepSound();
-        lexusEs.beepSound("BiiiiiBiiiiP");
-        lexusEs.theSoundOfTheEngine();
-        lexusEs.theSoundOfTheEngine("UUUUUUU");
-        System.out.println(temp);
+                Dog dog = new Dog("Reks");
+                Cat cat = new Cat("Murka");
 
-        Car kiaMorning = new Car(170000, "Morning", TypeOfCarEnum.HATCHBACK, 5,
-                kia, morning1);
-        System.out.println(kiaMorning.getInfo());
-        kiaMorning.beepSound();
-        kiaMorning.beepSound("BiiiiiBiiiiP");
-        kiaMorning.theSoundOfTheEngine();
-        kiaMorning.theSoundOfTheEngine("UUUUUUU");
-        System.out.println(temp);
+                Drawable[] drawables = { circle, triangle, square, rectangle, dog, cat };
+                for (Drawable item : drawables) {
+                        item.draw();
+                        if (item instanceof Figure) {
+                                System.out.println(((Figure) item).getName() + " Perimeter: "
+                                                + ((Figure) item).calculatePerimeter());
 
-        CarForSale camryInSale = new CarForSale(65000, "Camry 70", TypeOfCarEnum.SEDAN, 5, toyota, toyotaLexus25, 25000,
-                30000);
-        System.out.println(camryInSale.getInfo());
-        camryInSale.beepSound();
-        camryInSale.beepSound("BiiiiiBiiiiP");
-        camryInSale.theSoundOfTheEngine();
-        camryInSale.theSoundOfTheEngine("UUUUUUU");
-        System.out.println(temp);
+                        }
+                        if (item instanceof Animal) {
+                                System.out.println(((Animal) item).getName());
+                        }
+                        System.out.println(temp);
 
-        CarForSale k5InSale = new CarForSale(150000, "K5", TypeOfCarEnum.SEDAN, 5, kia, kiaK5, 12000,
-                14500);
-        System.out.println(k5InSale.getInfo());
-        k5InSale.beepSound();
-        k5InSale.beepSound("BiiiiiBiiiiP");
-        k5InSale.theSoundOfTheEngine();
-        k5InSale.theSoundOfTheEngine("UUUUUUU");
-        System.out.println(temp);
-    }
+                }
+        }
 }
