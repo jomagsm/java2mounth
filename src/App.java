@@ -1,28 +1,27 @@
+import java.util.Scanner;
+
 public class App {
         public static void main(String[] args) throws Exception {
-                final String temp = "==========+++==========";
-                Transport[] transports = { createObject(TransportTypeEnum.AIRPLANE),
-                                createObject(TransportTypeEnum.BICYCLE),
-                                createObject(TransportTypeEnum.CAR),
-                };
-                for (int i = 0; i < transports.length; i++) {
-                        if (transports[i] instanceof Printable) {
-                                ((Printable) transports[i]).print();
-                                System.out.println(temp);
+                final String separator = "==========+++==========";
+                User user = new User();
+                Scanner scanner = new Scanner(System.in);
+                while (true) {
+                        try {
+                                System.out.println("Enter user name: ");
+                                user.setName(scanner.next());
+                        } catch (IllegalNameLengthException e) {
+                                System.out.println(e.getMessage());
+                        }
+                        try {
+                                System.out.println("Enter user age: ");
+                                user.setAge(scanner.nextInt());
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                        if (user.getName() != null && user.getAge() != null) {
+                                break;
                         }
                 }
-        }
 
-        public static Transport createObject(TransportTypeEnum transportType) {
-                switch (transportType) {
-                        case BICYCLE:
-                                return new Bicycle("Bicycle", 2, "Yan");
-                        case CAR:
-                                return new Car("CAR", "ES300h", "Lexus", 2499);
-                        case AIRPLANE:
-                                return new Plane("JET", 2500, "Airplane");
-                        default:
-                                return new Car("CAR", "ES300h", "Lexus", 2499);
-                }
         }
 }
