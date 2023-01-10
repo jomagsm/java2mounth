@@ -1,27 +1,22 @@
-import java.util.Scanner;
 
 public class App {
         public static void main(String[] args) throws Exception {
                 final String separator = "==========+++==========";
-                User user = new User();
-                Scanner scanner = new Scanner(System.in);
+                BankAccount bankAccount = new BankAccount();
+                bankAccount.deposit(20000.00);
                 while (true) {
+                        System.out.println(separator);
                         try {
-                                System.out.println("Enter user name: ");
-                                user.setName(scanner.next());
-                        } catch (IllegalNameLengthException e) {
-                                System.out.println(e.getMessage());
-                        }
-                        try {
-                                System.out.println("Enter user age: ");
-                                user.setAge(scanner.nextInt());
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                        if (user.getName() != null && user.getAge() != null) {
+                                bankAccount.withDraw(6000);
+                        } catch (LimitException e) {
+                                try {
+                                        System.out.println(e.getMessage());
+                                        bankAccount.withDraw(e.getRemainingAmount().intValue());
+                                } catch (LimitException j) {
+                                        System.out.println(j.getMessage());
+                                }
                                 break;
                         }
                 }
-
         }
 }
