@@ -1,22 +1,40 @@
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class App {
         public static void main(String[] args) throws Exception {
                 final String separator = "==========+++==========";
-                BankAccount bankAccount = new BankAccount();
-                bankAccount.deposit(20000.00);
-                while (true) {
-                        System.out.println(separator);
-                        try {
-                                bankAccount.withDraw(6000);
-                        } catch (LimitException e) {
-                                try {
-                                        System.out.println(e.getMessage());
-                                        bankAccount.withDraw(e.getRemainingAmount().intValue());
-                                } catch (LimitException j) {
-                                        System.out.println(j.getMessage());
-                                }
-                                break;
-                        }
+                ArrayList<String> colors = new ArrayList<>();
+                ArrayList<Player> players = new ArrayList<>();
+
+                colors.add("Red");
+                colors.add("Green");
+                colors.add("Black");
+                colors.add("White");
+                colors.add("Pink");
+                colors.add("Yellow");
+                System.out.println(colors);
+                System.out.println(separator);
+                Collections.sort(colors);
+                System.out.println(colors);
+                System.out.println(separator);
+                Collections.reverse(colors);
+                System.out.println(colors);
+                System.out.println(separator);
+                Collections.shuffle(colors);
+                System.out.println(colors);
+                System.out.println(separator);
+                for (String item : colors) {
+                        System.out.println(item);
                 }
+
+                Player player1 = new Player("Mack", 1);
+                Player player2 = new Player("Jack", 7);
+                Player player3 = new Player("Macle", 9);
+
+                players.add(player1);
+                players.add(player2);
+                players.add(player3);
+                System.out.println(players);
         }
 }
